@@ -1,0 +1,16 @@
+import  {Product} from 'schema
+
+export function normalizeProduct(ProductNode:Product):any{
+    const{
+        id,
+        title: name,
+        handle,
+        vendor,
+        description,
+        ...rest
+    }=ProductNode
+    const product = {
+        id, name, vendor, description, path: '/${handle}',slug: handle.replace(/^\/+|\/+$/g,""), ...rest
+    }
+    return product
+}
